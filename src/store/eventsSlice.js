@@ -31,7 +31,7 @@ const sampleEvents = {
       endTime: "6:00 PM",
     },
   ],
-  "2025-06-13": [
+  "2025-06-28": [
     {
       id: 5,
       title: "Morning Meditation",
@@ -54,7 +54,7 @@ const sampleEvents = {
       endTime: "10:30 AM",
     },
   ],
-  "2025-06-14": [
+  "2025-06-29": [
     {
       id: 8,
       title: "Tournament Prep",
@@ -91,7 +91,7 @@ const sampleEvents = {
       endTime: "5:00 PM",
     },
   ],
-  "2025-06-15": [
+  "2025-06-30": [
     {
       id: 13,
       title: "Kids Class",
@@ -128,7 +128,7 @@ const sampleEvents = {
       endTime: "12:30 PM",
     },
   ],
-  "2025-06-20": [
+  "2025-07-07": [
     {
       id: 18,
       title: "Tournament",

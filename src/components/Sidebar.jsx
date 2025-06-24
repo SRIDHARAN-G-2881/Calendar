@@ -23,28 +23,8 @@ const menuSections = [
   {
     title: "Manage",
     items: [
-      { icon: Tv, label: "Programs" },
       { icon: CalendarIcon, label: "Events", active: true },
-      { icon: IdCard, label: "Memberships" },
-      { icon: FileText, label: "Documents" },
-    ],
-  },
-  {
-    title: "Members",
-    items: [{ icon: CreditCard, label: "Payments" }],
-  },
-  {
-    title: "Engage",
-    items: [
-      { icon: Users, label: "People" },
-      { icon: MessageSquare, label: "Communication" },
-    ],
-  },
-  {
-    title: "More",
-    items: [
-      { icon: Bell, label: "Notifications", badge: 2 },
-      { icon: Search, label: "Search", shortcut: "⌘K" },
+
     ],
   },
 ]
@@ -55,10 +35,10 @@ function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="p-2 rounded-md hover:bg-accent hover:text-accent-foreground text-muted-foreground"
+      className="p-2 rounded-md hover:bg-accent hover:text-accent-foreground text-muted-foreground relative"
     >
-      <Sun className="w-4 h-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute w-4 h-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      <Sun className="w-4 h-4 transition-all dark:translate-x-2 dark:opacity-0" />
+      <Moon className="absolute w-4 h-4 transition-all top-2 left-2 -translate-x-2 opacity-0 dark:translate-x-0 dark:opacity-100" />
       <span className="sr-only">Toggle theme</span>
     </button>
   )
@@ -71,11 +51,14 @@ export default function Sidebar() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="font-bold text-sm text-primary-foreground">K</span>
+              <span className="font-bold text-sm text-primary-foreground">C</span>
             </div>
-            <span className="font-bold text-lg text-foreground">KarateStudio</span>
+            <span className="font-bold text-lg text-foreground">Calendar</span>
           </div>
-          <ChevronDown className="w-4 h-4 text-muted-foreground" />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <ChevronDown className="w-4 h-4 text-muted-foreground" />
+          </div>
         </div>
       </div>
 
@@ -108,12 +91,11 @@ export default function Sidebar() {
         <div className="flex items-center space-x-3">
           <img src="https://i.pravatar.cc/40?img=12" alt="Elijah Scott" className="w-8 h-8 rounded-full" />
           <div className="flex-1">
-            <p className="text-sm font-medium text-foreground">Elijah Scott</p>
-            <p className="text-xs text-muted-foreground">scotteli@hey.com</p>
+            <p className="text-sm font-medium text-foreground">Sridharan</p>
+            <p className="text-xs text-muted-foreground">sridharan@gmail.com</p>
           </div>
         </div>
         <div className="flex items-center space-x-1">
-          <ThemeToggle />
           <button className="p-2 rounded-md hover:bg-accent hover:text-accent-foreground text-muted-foreground">
             <Settings className="w-4 h-4" />
           </button>
