@@ -2,13 +2,12 @@
 
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react"
 import CalendarGrid from "./CalendarGrid"
+import { useStore } from "../store/useStore"
 import dayjs from "dayjs"
 
-export default function Calendar({ currentDate, setCurrentDate }) {
-  const navigateMonth = (direction) => {
-    const newDate = dayjs(currentDate).add(direction, 'month').toDate()
-    setCurrentDate(newDate)
-  }
+export default function Calendar() {
+  const currentDate = useStore(state => state.currentDate)
+  const navigateMonth = useStore(state => state.navigateMonth)
 
   return (
     <div className="bg-card text-card-foreground rounded-lg border border-border h-full transition-all">
@@ -17,7 +16,7 @@ export default function Calendar({ currentDate, setCurrentDate }) {
           <div>
             <h2 className="text-lg font-semibold text-foreground">Full Event Schedule</h2>
             <p className="text-sm text-muted-foreground">
-              {dayjs(currentDate).format('MMMM YYYY')}
+              {currentDate.format('MMMM YYYY')}
             </p>
           </div>
 

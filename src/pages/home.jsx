@@ -1,12 +1,11 @@
-import { useState } from "react"
-import Sidebar from "../components/sidebar"
-import Header from "../components/header"
 import Calendar from "../components/Calendar"
+import Header from "../components/Header"
+import Sidebar from "../components/Sidebar"
 import EventDetails from "../components/EventDetails"
+import EventDetailsSidebar from "../components/EventDetailsSidebar"
+import CreateEventModal from '../components/CreateEventModal'
 
 export default function Home() {
-    const [currentDate, setCurrentDate] = useState(new Date())
-
     return (
         <div className="flex h-screen bg-background font-sans">
             <Sidebar />
@@ -14,9 +13,11 @@ export default function Home() {
                 <div className="p-8">
                     <Header />
                     <EventDetails />
-                    <Calendar currentDate={currentDate} setCurrentDate={setCurrentDate} />
+                    <Calendar />
                 </div>
             </main>
+            <EventDetailsSidebar />
+            <CreateEventModal />
         </div>
     )
 }
