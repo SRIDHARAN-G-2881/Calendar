@@ -1,21 +1,22 @@
 import { useState } from "react"
 import Sidebar from "../components/sidebar"
 import Header from "../components/header"
-import Calendar from "../components/calendar"
+import Calendar from "../components/Calendar"
+import EventDetails from "../components/EventDetails"
 
-export default function App() {
-  const [currentDate, setCurrentDate] = useState(new Date(2023, 1, 26)) // February 26, 2023
-  const [view, setView] = useState("Monthly")
+export default function Home() {
+    const [currentDate, setCurrentDate] = useState(new Date())
 
-  return (
-    <div className="flex h-screen bg-gray-50">
-      <Sidebar />
-      <div className="flex-1 flex flex-col">
-        <Header view={view} setView={setView} />
-        <main className="flex-1 p-6">
-          <Calendar currentDate={currentDate} setCurrentDate={setCurrentDate} />
-        </main>
-      </div>
-    </div>
-  )
+    return (
+        <div className="flex h-screen bg-background font-sans">
+            <Sidebar />
+            <main className="flex-1 flex flex-col overflow-y-auto">
+                <div className="p-8">
+                    <Header />
+                    <EventDetails />
+                    <Calendar currentDate={currentDate} setCurrentDate={setCurrentDate} />
+                </div>
+            </main>
+        </div>
+    )
 }

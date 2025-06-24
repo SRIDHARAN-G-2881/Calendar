@@ -1,3 +1,98 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 5% 96%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 6% 10%;
+    --foreground: 240 5% 96%;
+    --card: 240 5% 14%;
+    --card-foreground: 240 5% 96%;
+    --popover: 240 6% 10%;
+    --popover-foreground: 240 5% 96%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 240 5% 96%;
+    --secondary: 240 5% 18%;
+    --secondary-foreground: 240 5% 98%;
+    --muted: 240 5% 18%;
+    --muted-foreground: 240 4% 65%;
+    --accent: 240 5% 18%;
+    --accent-foreground: 240 5% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 5% 18%;
+    --input: 240 5% 18%;
+    --ring: 263.4 70% 50.4%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  .calendar-event-marketing {
+    @apply bg-slate-50 border-l-2 border-slate-600 text-slate-700 hover:bg-slate-100 transition-colors;
+  }
+
+  .calendar-event-meeting {
+    @apply bg-zinc-50 border-l-2 border-zinc-600 text-zinc-700 hover:bg-zinc-100 transition-colors;
+  }
+
+  .calendar-event-success {
+    @apply bg-stone-50 border-l-2 border-stone-600 text-stone-700 hover:bg-stone-100 transition-colors;
+  }
+
+  .calendar-event-warning {
+    @apply bg-neutral-50 border-l-2 border-neutral-600 text-neutral-700 hover:bg-neutral-100 transition-colors;
+  }
+
+  .calendar-event-info {
+    @apply bg-gray-50 border-l-2 border-gray-600 text-gray-700 hover:bg-gray-100 transition-colors;
+  }
+
+  .luxury-shadow {
+    @apply shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)];
+  }
+
+  .luxury-border {
+    @apply border border-slate-200/50;
+  }
+
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-sm;
+  }
+
+  .event-pill {
+    @apply flex items-center space-x-2 p-1.5 rounded-md text-xs truncate cursor-pointer;
+  }
+}

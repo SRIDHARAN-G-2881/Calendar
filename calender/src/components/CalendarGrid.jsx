@@ -1,7 +1,8 @@
 import CalendarDay from "./CalendarDay"
+import dayjs from "dayjs"
 
 const sampleEvents = {
-  "2023-2-27": [
+  "2025-6-12": [
     {
       id: 1,
       title: "Onboarding Marketing",
@@ -10,7 +11,7 @@ const sampleEvents = {
       avatar: "https://i.pravatar.cc/32?img=1",
     },
   ],
-  "2023-2-6": [
+  "2025-6-13": [
     {
       id: 2,
       title: "Onboarding Marketing",
@@ -19,7 +20,7 @@ const sampleEvents = {
       avatar: "https://i.pravatar.cc/32?img=2",
     },
   ],
-  "2023-3-1": [
+  "2025-6-20": [
     {
       id: 3,
       title: "Onboarding Marketing",
@@ -28,7 +29,7 @@ const sampleEvents = {
       avatar: "https://i.pravatar.cc/32?img=3",
     },
   ],
-  "2023-3-3": [
+  "2025-6-21": [
     {
       id: 4,
       title: "Onboarding Marketing",
@@ -37,7 +38,7 @@ const sampleEvents = {
       avatar: "https://i.pravatar.cc/32?img=4",
     },
   ],
-  "2023-2-12": [
+  "2025-6-29": [
     {
       id: 5,
       title: "Onboarding Marketing",
@@ -46,7 +47,7 @@ const sampleEvents = {
       avatar: "https://i.pravatar.cc/32?img=5",
     },
   ],
-  "2023-2-15": [
+  "2025-6-30": [
     {
       id: 6,
       title: "Onboarding Marketing",
@@ -55,7 +56,7 @@ const sampleEvents = {
       avatar: "https://i.pravatar.cc/32?img=6",
     },
   ],
-  "2023-2-18": [
+  "2025-7-1": [
     {
       id: 7,
       title: "Onboarding Marketing",
@@ -64,10 +65,10 @@ const sampleEvents = {
       avatar: "https://i.pravatar.cc/32?img=7",
     },
   ],
-  "2023-2-29": [
+    "2025-7-2": [
     { id: 8, title: "Onboarding Marketing", type: "info", time: "10:30 AM", avatar: "https://i.pravatar.cc/32?img=8" },
   ],
-  "2023-3-2": [
+  "2025-7-3": [
     {
       id: 9,
       title: "Onboarding Marketing",
@@ -76,75 +77,104 @@ const sampleEvents = {
       avatar: "https://i.pravatar.cc/32?img=9",
     },
   ],
+  "2025-7-4": [
+    {
+      id: 1,
+      title: "Little Tigers...",
+      type: "marketing",
+      time: "10:00 AM",
+      avatar: "https://i.pravatar.cc/32?img=1",
+    },
+  ],
+  "2025-7-5": [
+    {
+      id: 2,
+      title: "Little Tigers...",
+      type: "marketing",
+      time: "10:00 AM",
+      avatar: "https://i.pravatar.cc/32?img=1",
+    },
+  ],
+  "2025-7-6": [
+    {
+      id: 3,
+      title: "Little Tigers...",
+      type: "marketing",
+      time: "10:00 AM",
+      avatar: "https://i.pravatar.cc/32?img=1",
+    },
+  ],
 }
 
 export default function CalendarGrid({ currentDate }) {
-  const daysOfWeek = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]
+  const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
-  const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
-  const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0)
-  const firstDayOfWeek = firstDayOfMonth.getDay()
-  const daysInMonth = lastDayOfMonth.getDate()
+  const d = dayjs(currentDate)
+  const firstDayOfMonth = d.startOf('month')
+  const lastDayOfMonth = d.endOf('month')
 
-  // Get previous month's last days
-  const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 0)
-  const prevMonthDays = prevMonth.getDate()
+  const startOfMonthDay = firstDayOfMonth.day() // 0 = Sun, 1 = Mon
+  const daysInMonth = d.daysInMonth()
 
   const calendarDays = []
 
   // Previous month's days
-  for (let i = firstDayOfWeek - 1; i >= 0; i--) {
-    const day = prevMonthDays - i
-    const date = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, day)
+  const daysFromPrevMonth = startOfMonthDay === 0 ? 6 : startOfMonthDay - 1
+  for (let i = daysFromPrevMonth; i > 0; i--) {
+    const date = firstDayOfMonth.subtract(i, 'day')
     calendarDays.push({
-      day,
-      date,
+      day: date.date(),
+      date: date.toDate(),
       isCurrentMonth: false,
-      events: sampleEvents[`${date.getFullYear()}-${date.getMonth() + 1}-${day}`] || [],
+      events: sampleEvents[date.format('YYYY-M-D')] || [],
     })
   }
 
   // Current month's days
   for (let day = 1; day <= daysInMonth; day++) {
-    const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day)
+    const date = firstDayOfMonth.date(day)
     calendarDays.push({
       day,
-      date,
+      date: date.toDate(),
       isCurrentMonth: true,
-      events: sampleEvents[`${date.getFullYear()}-${date.getMonth() + 1}-${day}`] || [],
+      events: sampleEvents[date.format('YYYY-M-D')] || [],
     })
   }
 
   // Next month's days
   const remainingDays = 42 - calendarDays.length
-  for (let day = 1; day <= remainingDays; day++) {
-    const date = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, day)
+  for (let i = 1; i <= remainingDays; i++) {
+    const date = lastDayOfMonth.add(i, 'day')
     calendarDays.push({
-      day,
-      date,
+      day: date.date(),
+      date: date.toDate(),
       isCurrentMonth: false,
-      events: sampleEvents[`${date.getFullYear()}-${date.getMonth() + 1}-${day}`] || [],
+      events: sampleEvents[date.format('YYYY-M-D')] || [],
     })
   }
 
   return (
-    <div className="grid grid-cols-7 gap-px bg-gray-200 rounded-lg overflow-hidden">
+    <div className="grid grid-cols-7">
       {/* Days of week header */}
       {daysOfWeek.map((day) => (
-        <div key={day} className="bg-gray-50 p-3 text-center">
-          <span className="text-sm font-medium text-gray-600">{day}</span>
+        <div key={day} className="p-3 text-center border-b border-border">
+          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer">{day}</span>
         </div>
       ))}
 
       {/* Calendar days */}
       {calendarDays.map((dayData, index) => (
-        <CalendarDay
+        <div
           key={index}
-          day={dayData.day}
-          date={dayData.date}
-          isCurrentMonth={dayData.isCurrentMonth}
-          events={dayData.events}
-        />
+          className={`border-r border-b border-border ${(index + 1) % 7 === 0 ? "border-r-0" : ""} transition-colors duration-150 hover:bg-accent`}
+        >
+          <CalendarDay
+            day={dayData.day}
+            date={dayData.date}
+            isCurrentMonth={dayData.isCurrentMonth}
+            events={dayData.events}
+          />
+        </div>
       ))}
     </div>
   )
