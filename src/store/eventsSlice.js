@@ -1,198 +1,175 @@
 import dayjs from "dayjs";
 
 const sampleEvents = {
-  "2025-6-12": [
+  "2025-06-12": [
     {
       id: 1,
       title: "Little Tigers Karate",
-      type: "Class",
-      color: "blue",
-      time: "10:00 AM",
-      avatar: "https://i.pravatar.cc/32?img=1",
+      color: "#3B82F6",
+      startTime: "10:00 AM",
+      endTime: "11:00 AM",
     },
     {
       id: 2,
       title: "Advanced Karate",
-      type: "Training",
-      color: "purple",
-      time: "10:30 AM",
-      avatar: "https://i.pravatar.cc/32?img=2",
+      color: "#8B5CF6",
+      startTime: "10:30 AM",
+      endTime: "11:30 AM",
     },
     {
       id: 3,
       title: "Belt Testing",
-      type: "Exam",
-      color: "orange",
-      time: "2:00 PM",
-      avatar: "https://i.pravatar.cc/32?img=3",
+      color: "#F97316",
+      startTime: "2:00 PM",
+      endTime: "3:00 PM",
     },
     {
       id: 4,
       title: "Evening Class",
-      type: "Class",
-      color: "green",
-      time: "5:00 PM",
-      avatar: "https://i.pravatar.cc/32?img=4",
+      color: "#22C55E",
+      startTime: "5:00 PM",
+      endTime: "6:00 PM",
     },
   ],
-  "2025-6-13": [
+  "2025-06-13": [
     {
       id: 5,
       title: "Morning Meditation",
-      type: "Wellness",
-      color: "teal",
-      time: "7:00 AM",
-      avatar: "https://i.pravatar.cc/32?img=5",
+      color: "#14B8A6",
+      startTime: "7:00 AM",
+      endTime: "8:00 AM",
     },
     {
       id: 6,
       title: "Beginner Class",
-      type: "Class",
-      color: "blue",
-      time: "9:00 AM",
-      avatar: "https://i.pravatar.cc/32?img=6",
+      color: "#3B82F6",
+      startTime: "9:00 AM",
+      endTime: "10:00 AM",
     },
     {
       id: 7,
       title: "Private Lesson",
-      type: "Training",
-      color: "purple",
-      time: "9:30 AM",
-      avatar: "https://i.pravatar.cc/32?img=7",
+      color: "#8B5CF6",
+      startTime: "9:30 AM",
+      endTime: "10:30 AM",
     },
   ],
-  "2025-6-14": [
+  "2025-06-14": [
     {
       id: 8,
       title: "Tournament Prep",
-      type: "Training",
-      color: "orange",
-      time: "10:00 AM",
-      avatar: "https://i.pravatar.cc/32?img=8",
+      color: "#F97316",
+      startTime: "10:00 AM",
+      endTime: "11:00 AM",
     },
     {
       id: 9,
       title: "Team Meeting",
-      type: "Meeting",
-      color: "teal",
-      time: "10:15 AM",
-      avatar: "https://i.pravatar.cc/32?img=9",
+      color: "#14B8A6",
+      startTime: "10:15 AM",
+      endTime: "11:15 AM",
     },
     {
       id: 10,
       title: "Sparring Practice",
-      type: "Training",
-      color: "purple",
-      time: "10:45 AM",
-      avatar: "https://i.pravatar.cc/32?img=10",
+      color: "#8B5CF6",
+      startTime: "10:45 AM",
+      endTime: "11:45 AM",
     },
     {
       id: 11,
       title: "Parent Workshop",
-      type: "Workshop",
-      color: "green",
-      time: "2:00 PM",
-      avatar: "https://i.pravatar.cc/32?img=11",
+      color: "#22C55E",
+      startTime: "2:00 PM",
+      endTime: "3:00 PM",
     },
     {
       id: 12,
       title: "Advanced Training",
-      type: "Training",
-      color: "blue",
-      time: "4:00 PM",
-      avatar: "https://i.pravatar.cc/32?img=12",
+      color: "#3B82F6",
+      startTime: "4:00 PM",
+      endTime: "5:00 PM",
     },
   ],
-  "2025-6-15": [
+  "2025-06-15": [
     {
       id: 13,
       title: "Kids Class",
-      type: "Class",
-      color: "blue",
-      time: "9:00 AM",
-      avatar: "https://i.pravatar.cc/32?img=13",
+      color: "#3B82F6",
+      startTime: "9:00 AM",
+      endTime: "10:00 AM",
     },
     {
       id: 14,
       title: "Teen Class",
-      type: "Class",
-      color: "purple",
-      time: "9:00 AM",
-      avatar: "https://i.pravatar.cc/32?img=14",
+      color: "#8B5CF6",
+      startTime: "9:00 AM",
+      endTime: "10:00 AM",
     },
     {
       id: 15,
       title: "Adult Class",
-      type: "Class",
-      color: "green",
-      time: "9:30 AM",
-      avatar: "https://i.pravatar.cc/32?img=15",
+      color: "#22C55E",
+      startTime: "9:30 AM",
+      endTime: "10:30 AM",
     },
     {
       id: 16,
       title: "Competition Team",
-      type: "Training",
-      color: "orange",
-      time: "11:00 AM",
-      avatar: "https://i.pravatar.cc/32?img=16",
+      color: "#F97316",
+      startTime: "11:00 AM",
+      endTime: "12:00 PM",
     },
     {
       id: 17,
       title: "Staff Training",
-      type: "Meeting",
-      color: "teal",
-      time: "11:30 AM",
-      avatar: "https://i.pravatar.cc/32?img=17",
+      color: "#14B8A6",
+      startTime: "11:30 AM",
+      endTime: "12:30 PM",
     },
   ],
-  "2025-6-20": [
+  "2025-06-20": [
     {
       id: 18,
       title: "Tournament",
-      type: "Event",
-      color: "blue",
-      time: "8:00 AM",
-      avatar: "https://i.pravatar.cc/32?img=18",
+      color: "#3B82F6",
+      startTime: "8:00 AM",
+      endTime: "12:00 PM",
     },
     {
       id: 19,
       title: "Judges Meeting",
-      type: "Meeting",
-      color: "purple",
-      time: "8:30 AM",
-      avatar: "https://i.pravatar.cc/32?img=19",
+      color: "#8B5CF6",
+      startTime: "8:30 AM",
+      endTime: "9:30 AM",
     },
     {
       id: 20,
       title: "Opening Ceremony",
-      type: "Event",
-      color: "green",
-      time: "9:00 AM",
-      avatar: "https://i.pravatar.cc/32?img=20",
+      color: "#22C55E",
+      startTime: "9:00 AM",
+      endTime: "10:00 AM",
     },
     {
       id: 21,
       title: "Forms Competition",
-      type: "Competition",
-      color: "orange",
-      time: "10:00 AM",
-      avatar: "https://i.pravatar.cc/32?img=21",
+      color: "#F97316",
+      startTime: "10:00 AM",
+      endTime: "11:00 AM",
     },
     {
       id: 22,
       title: "Sparring Competition",
-      type: "Competition",
-      color: "teal",
-      time: "2:00 PM",
-      avatar: "https://i.pravatar.cc/32?img=22",
+      color: "#14B8A6",
+      startTime: "2:00 PM",
+      endTime: "4:00 PM",
     },
     {
       id: 23,
       title: "Awards Ceremony",
-      type: "Event",
-      color: "blue",
-      time: "5:00 PM",
-      avatar: "https://i.pravatar.cc/32?img=23",
+      color: "#3B82F6",
+      startTime: "5:00 PM",
+      endTime: "6:00 PM",
     },
   ],
 };
@@ -202,8 +179,6 @@ export const createEventsSlice = (set, get) => ({
     events.map((event) => ({
       ...event,
       date,
-      startTime: event.time,
-      endTime: dayjs(event.time, "h:mm A").add(1, "hour").format("h:mm A"),
     }))
   ),
   currentDate: dayjs(),
@@ -211,6 +186,7 @@ export const createEventsSlice = (set, get) => ({
   selectedDate: null,
   isCreateEventModalOpen: false,
   isEventDetailsSidebarOpen: false,
+  isImportModalOpen: false,
 
   // Actions
   setSelectedEventId: (id) => set({ selectedEventId: id }),
@@ -222,10 +198,28 @@ export const createEventsSlice = (set, get) => ({
   setCreateEventModalOpen: (isOpen) => set({ isCreateEventModalOpen: isOpen }),
   setEventDetailsSidebarOpen: (isOpen) =>
     set({ isEventDetailsSidebarOpen: isOpen }),
+  setImportModalOpen: (isOpen) => set({ isImportModalOpen: isOpen }),
 
   addEvent: (event) =>
     set((state) => ({
       events: [...state.events, event],
+    })),
+
+  importEvents: (eventsJson) =>
+    set((state) => ({
+      events: [
+        ...state.events,
+        ...Object.entries(eventsJson).flatMap(([date, events]) =>
+          events.map((event) => ({
+            id: event.id,
+            title: event.title,
+            color: event.color,
+            startTime: event.startTime,
+            endTime: event.endTime,
+            date: dayjs(date).format("YYYY-MM-DD"),
+          }))
+        ),
+      ],
     })),
 
   updateEvent: (updatedEvent) =>
@@ -244,7 +238,9 @@ export const createEventsSlice = (set, get) => ({
   // Computed values/selectors
   getEventsForDate: (date) => {
     const events = get().events;
-    return events.filter((event) => event.date === date);
+    return events.filter(
+      (event) => event.date === dayjs(date).format("YYYY-MM-DD")
+    );
   },
 
   getEventById: (id) => {

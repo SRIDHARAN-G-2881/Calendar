@@ -5,6 +5,7 @@ import dayjs from "dayjs"
 
 export default function CalendarGrid({ currentDate }) {
     const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    const events = useStore(state => state.events)
     const getEventsForDate = useStore(state => state.getEventsForDate)
 
     const calendarDays = useMemo(() => {
@@ -25,6 +26,14 @@ export default function CalendarGrid({ currentDate }) {
         return days
     }, [currentDate])
 
+    // Memoize events for each day to prevent unnecessary re-renders
+    const dayEvents = useMemo(() => {
+        return calendarDays.reduce((acc, dayData) => {
+            acc[dayData.date] = getEventsForDate(dayData.date)
+            return acc
+        }, {})
+    }, [calendarDays, events]) // Re-compute when events change
+
     return (
         <div className="grid grid-cols-7">
             {/* Days of week header */}
@@ -44,7 +53,7 @@ export default function CalendarGrid({ currentDate }) {
                         day={dayData.day}
                         date={dayData.date}
                         isCurrentMonth={dayData.isCurrentMonth}
-                        events={getEventsForDate(dayData.date)}
+                        events={dayEvents[dayData.date]}
                     />
                 </div>
             ))}

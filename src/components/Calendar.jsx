@@ -1,13 +1,16 @@
 "use client"
 
-import { ChevronLeft, ChevronRight, MapPin } from "lucide-react"
+import { ChevronLeft, ChevronRight, Plus, Upload } from "lucide-react"
 import CalendarGrid from "./CalendarGrid"
 import { useStore } from "../store/useStore"
 import dayjs from "dayjs"
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 export default function Calendar() {
   const currentDate = useStore(state => state.currentDate)
   const navigateMonth = useStore(state => state.navigateMonth)
+  const setCreateEventModalOpen = useStore(state => state.setCreateEventModalOpen)
+  const setImportModalOpen = useStore(state => state.setImportModalOpen)
 
   return (
     <div className="bg-card text-card-foreground rounded-lg border border-border h-full transition-all">
@@ -35,10 +38,33 @@ export default function Calendar() {
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
-            <button className="flex items-center space-x-2 px-3 py-1.5 border border-border rounded-lg text-sm font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground">
-              <MapPin className="w-4 h-4" />
-              <span>34 West 15th Street, NY</span>
-            </button>
+
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger asChild>
+                <button className="flex items-center space-x-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90">
+                  <Plus className="w-4 h-4" />
+                  <span>Add Event</span>
+                </button>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Portal>
+                <DropdownMenu.Content className="bg-popover text-popover-foreground p-2 rounded-lg shadow-lg border border-border min-w-[200px] animate-in fade-in-0 zoom-in-95 select-none">
+                  <DropdownMenu.Item
+                    className="flex items-center space-x-2 px-3 py-2 text-sm hover:bg-accent rounded-md cursor-pointer"
+                    onClick={() => setCreateEventModalOpen(true)}
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span>Create New Event</span>
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item
+                    className="flex items-center space-x-2 px-3 py-2 text-sm hover:bg-accent rounded-md cursor-pointer"
+                    onClick={() => setImportModalOpen(true)}
+                  >
+                    <Upload className="w-4 h-4" />
+                    <span>Import from JSON</span>
+                  </DropdownMenu.Item>
+                </DropdownMenu.Content>
+              </DropdownMenu.Portal>
+            </DropdownMenu.Root>
           </div>
         </div>
       </div>

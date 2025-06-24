@@ -2,6 +2,9 @@ import dayjs from "dayjs"
 import * as Popover from '@radix-ui/react-popover';
 import { useStore } from "../store/useStore"
 
+// A simple check for a valid hex color
+const isValidHex = (color) => /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color)
+
 export default function CalendarDay({ day, date, isCurrentMonth, events }) {
   const isToday = dayjs(date).isSame(dayjs(), 'day')
   const visibleEvents = events.slice(0, 2)
@@ -10,39 +13,6 @@ export default function CalendarDay({ day, date, isCurrentMonth, events }) {
   const setSelectedDate = useStore(state => state.setSelectedDate)
   const setEventDetailsSidebarOpen = useStore(state => state.setEventDetailsSidebarOpen)
   const setSelectedEventId = useStore(state => state.setSelectedEventId)
-
-  const colorClasses = {
-    blue: {
-      bg: 'bg-blue-50 dark:bg-blue-900/50',
-      text: 'text-blue-700 dark:text-blue-300',
-      dot: 'bg-blue-500',
-      hover: 'hover:bg-blue-100 dark:hover:bg-blue-900',
-    },
-    purple: {
-      bg: 'bg-purple-50 dark:bg-purple-900/50',
-      text: 'text-purple-700 dark:text-purple-300',
-      dot: 'bg-purple-500',
-      hover: 'hover:bg-purple-100 dark:hover:bg-purple-900',
-    },
-    green: {
-      bg: 'bg-green-50 dark:bg-green-900/50',
-      text: 'text-green-700 dark:text-green-300',
-      dot: 'bg-green-500',
-      hover: 'hover:bg-green-100 dark:hover:bg-green-900',
-    },
-    orange: {
-      bg: 'bg-orange-50 dark:bg-orange-900/50',
-      text: 'text-orange-700 dark:text-orange-300',
-      dot: 'bg-orange-500',
-      hover: 'hover:bg-orange-100 dark:hover:bg-orange-900',
-    },
-    teal: {
-      bg: 'bg-teal-50 dark:bg-teal-900/50',
-      text: 'text-teal-700 dark:text-teal-300',
-      dot: 'bg-teal-500',
-      hover: 'hover:bg-teal-100 dark:hover:bg-teal-900',
-    }
-  };
 
   const handleDayClick = () => {
     setSelectedDate(date)
@@ -71,26 +41,30 @@ export default function CalendarDay({ day, date, isCurrentMonth, events }) {
       </div>
       <div className="mt-8 space-y-1.5">
         {visibleEvents.map(event => {
-          const classes = colorClasses[event.color] || colorClasses.blue;
+          const color = isValidHex(event.color) ? event.color : '#3B82F6' // Fallback color
           return (
             <Popover.Root key={event.id}>
               <Popover.Trigger asChild>
                 <div
-                  className={`event-pill ${classes.bg} ${classes.text} ${classes.hover}`}
+                  className={`event-pill bg-opacity-10 hover:bg-opacity-20`}
+                  style={{
+                    backgroundColor: `${color}1A`, // hex with opacity
+                    color: color
+                  }}
                   onClick={(e) => handleEventClick(e, event.id)}
                 >
-                  <div className={`w-2 h-2 ${classes.dot} rounded-full`}></div>
+                  <div
+                    className={`w-2 h-2 rounded-full`}
+                    style={{ backgroundColor: color }}
+                  ></div>
                   <span className="font-medium truncate">{event.title}</span>
                 </div>
               </Popover.Trigger>
               <Popover.Portal>
                 <Popover.Content sideOffset={5} className="bg-card p-3 rounded-lg shadow-lg border border-border w-60 z-50 animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95">
-                  <div className="flex items-center space-x-3">
-                    <img src={event.avatar} alt="Avatar" className="w-9 h-9 rounded-full" />
-                    <div className="min-w-0">
-                      <p className="font-semibold text-foreground truncate">{event.title}</p>
-                      <p className="text-sm text-muted-foreground">{event.startTime} - {event.endTime}</p>
-                    </div>
+                  <div className="space-y-1">
+                    <p className="font-semibold text-foreground">{event.title}</p>
+                    <p className="text-sm text-muted-foreground">{event.startTime} - {event.endTime}</p>
                   </div>
                 </Popover.Content>
               </Popover.Portal>

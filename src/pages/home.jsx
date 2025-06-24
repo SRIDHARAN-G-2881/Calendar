@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar"
 import EventDetails from "../components/EventDetails"
 import EventDetailsSidebar from "../components/EventDetailsSidebar"
 import CreateEventModal from '../components/CreateEventModal'
+import ImportEventModal from '../components/ImportEventModal'
 
 export default function Home() {
     return (
@@ -18,6 +19,7 @@ export default function Home() {
             </main>
             <EventDetailsSidebar />
             <CreateEventModal />
+            <ImportEventModal />
         </div>
     )
 }

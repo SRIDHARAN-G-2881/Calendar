@@ -9,14 +9,22 @@ export default function CreateEventModal() {
     const selectedDate = useStore(state => state.selectedDate)
     const addEvent = useStore(state => state.addEvent)
 
+    const convertTo12Hour = (time24) => {
+        return dayjs(`2000-01-01 ${time24}`).format('h:mm A')
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const formData = new FormData(e.target)
-        const startTime = formData.get('startTime')
-        const endTime = formData.get('endTime')
+        const startTime24 = formData.get('startTime')
+        const endTime24 = formData.get('endTime')
+
+        // Convert to 12-hour format
+        const startTime = convertTo12Hour(startTime24)
+        const endTime = convertTo12Hour(endTime24)
 
         // Validate that end time is after start time
-        if (endTime <= startTime) {
+        if (endTime24 <= startTime24) {
             alert('End time must be after start time')
             return
         }
@@ -28,11 +36,13 @@ export default function CreateEventModal() {
             color: formData.get('color'),
             startTime,
             endTime,
-            date: selectedDate,
+            date: dayjs(selectedDate).format('YYYY-M-D'),
             avatar: `https://i.pravatar.cc/32?img=${Math.floor(Math.random() * 70)}`,
         }
+
         addEvent(newEvent)
         setCreateEventModalOpen(false)
+        e.target.reset()
     }
 
     return (
@@ -111,6 +121,7 @@ export default function CreateEventModal() {
                                     id="startTime"
                                     name="startTime"
                                     required
+                                    defaultValue="09:00"
                                     className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground"
                                 />
                             </div>
@@ -123,6 +134,7 @@ export default function CreateEventModal() {
                                     id="endTime"
                                     name="endTime"
                                     required
+                                    defaultValue="10:00"
                                     className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground"
                                 />
                             </div>
