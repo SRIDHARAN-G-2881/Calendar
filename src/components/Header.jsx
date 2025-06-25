@@ -9,7 +9,7 @@ export default function Header() {
         <ArrowLeft className="w-5 h-5" />
       </button>
       <span className="cursor-pointer hover:text-foreground transition-colors">Events / </span>
-      <span className="text-foreground font-medium">Little Tigers Karate</span>
+      <span className="text-foreground font-medium">Day Planner</span>
     </div>
   )
 }
