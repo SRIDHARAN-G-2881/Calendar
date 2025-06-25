@@ -172,6 +172,22 @@ const sampleEvents = {
       endTime: "6:00 PM",
     },
   ],
+  "2025-06-09": [
+    {
+      id: 1,
+      title: "Review code",
+      color: "#F97316",
+      startTime: "10:00 AM",
+      endTime: "11:00 AM",
+    },
+    {
+      id: 2,
+      title: "Fix bugs",
+      color: "#14B8A6",
+      startTime: "10:15 AM",
+      endTime: "11:15 AM",
+    },
+  ],
 };
 
 export const createEventsSlice = (set, get) => ({
