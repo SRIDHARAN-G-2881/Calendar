@@ -188,6 +188,38 @@ const sampleEvents = {
       endTime: "11:15 AM",
     },
   ],
+  "2025-07-11": [
+    {
+      id: 1,
+      title: "Team Meeting",
+      color: "#F97316",
+      startTime: "10:00 AM",
+      endTime: "11:00 AM",
+    },
+    {
+      id: 2,
+      title: "Client Collabration and Resolving issue",
+      color: "#14B8A6",
+      startTime: "12:15 AM",
+      endTime: "01:15 AM",
+    },
+  ],
+  "2025-07-16": [
+    {
+      id: 1,
+      title: "Testing Day",
+      color: "#F97316",
+      startTime: "10:00 AM",
+      endTime: "11:00 AM",
+    },
+    {
+      id: 2,
+      title: "Production day",
+      color: "#14B8A6",
+      startTime: "03:15 AM",
+      endTime: "06:15 AM",
+    },
+  ],
 };
 
 export const createEventsSlice = (set, get) => ({
