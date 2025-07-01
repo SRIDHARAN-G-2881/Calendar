@@ -208,14 +208,14 @@ const sampleEvents = {
     {
       id: 1,
       title: "Testing Day",
-      color: "#F97316",
+      color: "#3B82F6",
       startTime: "10:00 AM",
       endTime: "11:00 AM",
     },
     {
       id: 2,
       title: "Production day",
-      color: "#14B8A6",
+      color: "#8B5CF6",
       startTime: "03:15 AM",
       endTime: "06:15 AM",
     },
